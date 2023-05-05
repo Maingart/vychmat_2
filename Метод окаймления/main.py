@@ -2,7 +2,7 @@ import numpy as np
 from numpy import matrix
 
 
-def inv(A: matrix, depth=0) -> matrix:
+def inv(A: matrix) -> matrix:
     n = len(A)
     k = n - 1
 
@@ -12,7 +12,7 @@ def inv(A: matrix, depth=0) -> matrix:
     Ap = A[:k, :k]
     V, U = A[k, :k], A[:k, k]
 
-    Ap_inv = inv(Ap, depth + 1)
+    Ap_inv = inv(Ap)
 
     alpha = 1 / (A[k, k] - V * Ap_inv * U).item()
     Q = -V * Ap_inv * alpha
