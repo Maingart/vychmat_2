@@ -8,14 +8,11 @@ def solve_gauss(m):
     n = m.shape[0]
     for k in range(n - 1):
         ind = k + np.argmax(np.abs(m[k:, k]))
-        if ind != k:
-            m[k, :], m[ind, :] = np.copy(m[ind, :]), np.copy(m[k, :])
+        m[k, :], m[ind, :] = np.copy(m[ind, :]), np.copy(m[k, :])
 
         for i in range(k + 1, n):
             frac = m[i, k] / m[k, k]
             m[i, :] -= m[k, :] * frac
-
-    print(np.round(m, 3), '\n')
 
     x = np.transpose(np.matrix([0.0 for _ in range(n)]))
     for k in range(n - 1, -1, -1):
